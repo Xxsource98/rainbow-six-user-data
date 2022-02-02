@@ -1,0 +1,31 @@
+{
+  "name": "rainbow-six-user-data",
+  "version": "1.0.0",
+  "description": "A module that fetch user statistics from Rainbow Six Siege using r6stats.com API.",
+  "main": "./lib/cjs/module.js",
+  "module": "./lib/module.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xxsource98/rainbow-six-user-data.git"
+  },
+  "author": "Xxsource98",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Xxsource98/rainbow-six-user-data/issues"
+  },
+  "homepage": "https://github.com/Xxsource98/rainbow-six-user-data#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.14",
+    "typescript": "^4.5.5"
+  },
+  "files": [
+    "lib/"
+  ],
+  "dependencies": {
+    "axios": "^0.25.0"
+  }
+}

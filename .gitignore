@@ -1,0 +1,9 @@
+# Ignore Modules
+node_modules
+
+# Ignore Lib files
+/lib
+
+# Ignore Lock files
+package-lock.json
+yarn.lock
