@@ -1,6 +1,6 @@
 {
   "name": "rainbow-six-user-data",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A module that fetch user statistics from Rainbow Six Siege using r6stats.com API.",
   "main": "./lib/cjs/module.js",
   "module": "./lib/module.js",

@@ -110,7 +110,7 @@ type ResolveType = {
     }
 }
 
-type IDResolveDataType = { id: string }
+type IDResolveDataType = { ids: string[] }
 type IDResolveType = ResolveType & { data: IDResolveDataType }
 type UserResolveType = ResolveType & { data: RainbowSixUserDataType }
 type AnyResolveType = ResolveType & { data: any }
@@ -189,16 +189,24 @@ class RainbowSixSiegeUserData {
         return operators
     }
 
-    static async GetPlayerID (name: string, platform: PlatformType): Promise<AnyResolveType> {
+    static async GetPlayerID (name: string, platform: PlatformType): Promise<IDResolveType> {
         return new Promise(async (resolve, reject) => {
             await axios.get(`https://r6stats.com/api/player-search/${name}/${platform}`).then(returnData => {
                 const axiosData = returnData.data
-                const returnObject = axiosData.data as object
+                const returnObject = axiosData.data as object[]
     
                 if (returnObject.toString()) {
+                    const allIds: string[] = []
+
+                    if (returnObject && returnObject.length > 0) {
+                        returnObject.forEach(element => {
+                            // @ts-ignore
+                            allIds.push(element.ubisoft_id)
+                        });
+                    } 
+
                     const resolveData = {
-                        // @ts-ignore
-                        id: returnObject[0].ubisoft_id
+                        ids: allIds
                     }
 
                     resolve(this.#ResolveIDData(true, resolveData))
@@ -323,7 +331,7 @@ class RainbowSixSiegeUserData {
     
                 resolve(this.#ResolveUserType(true, resolveData))
             }).catch(ex => {
-                if (ex.response.status === 400) {
+                if (ex.response?.status === 400) {
                     reject(this.#RejectError('User Not Found!'))
                 }
 
