@@ -11,7 +11,7 @@ const GetUserData = async (Username: string): Promise<RainbowSixUserDataType> =>
 
     await RainbowSixSiegeUserData.GetPlayerID(Username, 'pc').then(returnData => {
         if (returnData.success) {
-            UserID = returnData.data.id
+            UserID = returnData.data.ids[0] // Get the best result
         }
     })
 
